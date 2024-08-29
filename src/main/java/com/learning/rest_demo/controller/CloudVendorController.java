@@ -1,9 +1,12 @@
 package com.learning.rest_demo.controller;
 
+import java.util.List;
+
 import org.apache.logging.log4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,31 +30,30 @@ public class CloudVendorController {
 	}
 
 	@GetMapping("{vendorId}")
-	public CloudVendor getCloudVendorDetails(String vendorId) {
-		return null;
-//		return cloudVendor;
-//		return new CloudVendor("1", "Deepak", "4 gibson", "0422222222");
+	public CloudVendor getCloudVendorDetails(@PathVariable String vendorId) {
+		return cloudVendorService.getCloudVendor(vendorId);
 	}
 	
 	@PostMapping()
 	public String createCloudVendorDetails(@RequestBody CloudVendor cloudVendor) {
-		logInfo.info("in getCloudVendorDetails info ");
-		logInfo.debug("in getCloudVendorDetails debug ");
-//		this.cloudVendor = cloudVendor;
 		return cloudVendorService.createCloudVendor(cloudVendor);
-//		return "Cloud vendor created successfully";
 	}
 	
 	@PutMapping()
 	public String updateCloudVendorDetails(@RequestBody CloudVendor cloudVendor) {
-//		this.cloudVendor = cloudVendor;
-		return "Cloud vendor updated successfully";
+		return cloudVendorService.updateCloudVendor(cloudVendor);
 	}
 
 	@DeleteMapping("{vendorId}")
-	public String deleteCloudVendorDetails(String vendorId) {
-//		this.cloudVendor = null;
-		return "Cloud vendor deleted successfully";
+	public String deleteCloudVendorDetails(@PathVariable String vendorId) {
+		System.out.println("vendorId");
+		System.out.println(vendorId);
+		return cloudVendorService.deleteCloudVendor(vendorId);
+	}
+	
+	@GetMapping()
+	public List<CloudVendor> getAllCloudVendorDetails() {
+		return cloudVendorService.getAllCloudVendors();
 	}
 
 }

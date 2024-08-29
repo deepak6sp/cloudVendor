@@ -27,26 +27,29 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
 	@Override
 	public String updateCloudVendor(CloudVendor cloudVendor) {
-		// TODO Auto-generated method stub
-		return null;
+		cloudVendorRepository.save(cloudVendor);
+		return "Cloud vendor updated successfully in database";
 	}
 
 	@Override
 	public String deleteCloudVendor(String cloudVendorId) {
+		System.out.println("cloudVendorId");
+		System.out.println(cloudVendorId);
+		cloudVendorRepository.deleteById(cloudVendorId);
 		// TODO Auto-generated method stub
-		return null;
+		return "Cloud vendor deleted successfully in database";
 	}
 
 	@Override
 	public CloudVendor getCloudVendor(String cloudVendorId) {
 		// TODO Auto-generated method stub
-		return null;
+		return cloudVendorRepository.findById(cloudVendorId).get();
 	}
 
 	@Override
 	public List<CloudVendor> getAllCloudVendors() {
 		// TODO Auto-generated method stub
-		return null;
+		return cloudVendorRepository.findAll();
 	}
 
 
